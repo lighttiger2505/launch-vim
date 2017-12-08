@@ -13,7 +13,7 @@ func main() {
 
 func launchVim() int {
 	// Open text editor
-	err := openEditor("vim", "--cmd", "set ft=gitcommit tw=0 wrap lbr")
+	err := openEditor("vim")
 	if err != nil {
 		fmt.Fprint(os.Stdout, fmt.Sprintf("failed open text editor. %s\n", err.Error()))
 		return 1
@@ -21,8 +21,8 @@ func launchVim() int {
 	return 0
 }
 
-func openEditor(program string, args ...string) error {
-	c := exec.Command(program, args...)
+func openEditor(program string) error {
+	c := exec.Command(program)
 	c.Stdin = os.Stdin
 	c.Stdout = os.Stdout
 	c.Stderr = os.Stderr
